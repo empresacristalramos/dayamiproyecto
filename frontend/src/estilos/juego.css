@@ -1761,3 +1761,61 @@ body {
   font-size: 1rem;
   font-family: monospace;
 }
+
+
+/* Estilos del Avatar de Prótesis Dental y Cajas de Objetivos */
+.contenedor-avatar-protesis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.svg-avatar-protesis {
+  filter: drop-shadow(0 4px 15px rgba(225, 29, 72, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.svg-avatar-protesis:hover {
+  transform: scale(1.06);
+}
+
+.insignia-especialidad {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(2, 132, 199, 0.2);
+  border: 1px solid #38bdf8;
+  color: #bae6fd;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.caja-objetivo-tarjeta {
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid #38bdf8;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  margin: 0.7rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.texto-objetivo-clave {
+  font-size: 0.78rem;
+  color: #e2e8f0;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.texto-utilidad-clave {
+  font-size: 0.74rem;
+  color: #93c5fd;
+  line-height: 1.35;
+  font-style: italic;
+}

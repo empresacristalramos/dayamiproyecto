@@ -1,11 +1,11 @@
 /**
  * Menú Principal de Selección de los 4 Minijuegos
- * Autora: Dayami Blanco Ramos - CETIS 57
- * Variables y funciones 100% en español.
+ * Incluye el Objetivo Pedagógico y qué habilidad refuerza en la vida real y en la materia.
+ * Autora: Dayami Blanco Ramos - CETIS 57 (Prótesis Dental)
  */
 
 import React from 'react';
-import { Play, Sparkles, Target, Zap, Radar, GitCommit } from 'lucide-react';
+import { Play, Sparkles, Target, Zap, Radar, GitCommit, CheckCircle2 } from 'lucide-react';
 import { reproducirSonidoBoton } from '../servicios/motorSonido';
 
 export default function MenuJuegos({ alSeleccionarJuego }) {
@@ -15,6 +15,8 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
       titulo: '🐝 Caza la Abeja',
       subtitulo: 'Ecuación de la Recta y Pendiente',
       tema: 'y = mx + b',
+      objetivo: '🎯 Objetivo: Desarrollar la intuición de la inclinación (pendiente positiva, negativa y cortes con los ejes) sin memorizar fórmulas a ciegas.',
+      utilidad: '💡 ¿En qué ayuda? En trazar trayectorias, análisis de pendientes y ángulos de corte en piezas anatómicas y gráficas.',
       descripcion: 'Homenaje al dibujo del profe: apunta con el cañón cartesiano y ajusta la pendiente del rayo láser para cazar a la abeja antes de que pique.',
       icono: Zap,
       color: '#facc15',
@@ -25,6 +27,8 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
       titulo: '🎯 Rescate en el Punto Medio',
       subtitulo: 'Centro de un Segmento',
       tema: 'M = ((x₁+x₂)/2, (y₁+y₂)/2)',
+      objetivo: '🎯 Objetivo: Dominar el cálculo y la estimación visual del centro de gravedad y equidistancia entre dos coordenadas.',
+      utilidad: '💡 ¿En qué ayuda? En centrar estructuras, balancear fuerzas y encontrar puntos medios en alineaciones y planos.',
       descripcion: 'Calcula visualmente el centro de gravedad entre dos estaciones espaciales para soltar la cápsula de rescate sin que caiga al vacío.',
       icono: Target,
       color: '#06b6d4',
@@ -35,6 +39,8 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
       titulo: '🛰️ Radar de Distancia Cósmica',
       subtitulo: 'Distancia Euclidiana',
       tema: 'd = √((x₂-x₁)² + (y₂-y₁)²)',
+      objetivo: '🎯 Objetivo: Aplicar el Teorema de Pitágoras en el plano para calcular cuál amenaza está a menor distancia euclidiana.',
+      utilidad: '💡 ¿En qué ayuda? En sistemas de navegación por radar, proximidad espacial y cálculo de tolerancias milimétricas.',
       descripcion: 'Analiza el radar espacial y detecta a toda velocidad cuál amenaza está a menor distancia de tu base cartesiana para activar los escudos.',
       icono: Radar,
       color: '#10b981',
@@ -45,6 +51,8 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
       titulo: '⚡ Vías Paralelas vs Perpendiculares',
       subtitulo: 'Relación de Pendientes',
       tema: 'm₁ = m₂  |  m₁ · m₂ = -1',
+      objetivo: '🎯 Objetivo: Reconocer inmediatamente cuándo dos rectas nunca se tocan (paralelas) o cuándo chocan a 90° exactos (perpendiculares).',
+      utilidad: '💡 ¿En qué ayuda? En diseño de vías, construcción geométrica y ejes de simetría perpendiculares.',
       descripcion: 'Salva al convoy geométrico de descarrilar: alinea rieles paralelos para desviar o barreras perpendiculares a 90° para frenar.',
       icono: GitCommit,
       color: '#ec4899',
@@ -67,13 +75,13 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
           </span>
           <h2 className="titulo-banner">¡Bienvenido a GeoMatrix!</h2>
           <p className="texto-banner">
-            Videojuego arcade educativo desarrollado por <strong>Dayami Blanco Ramos</strong> bajo la metodología SDD.
-            Selecciona un minijuego para poner a prueba tus reflejos geométricos:
+            Videojuego arcade educativo desarrollado por <strong>Dayami Blanco Ramos</strong> (Estudiante de Prótesis Dental del CETIS 57) bajo la metodología SDD.
+            Cada minijuego tiene un objetivo analítico específico para dominar el temario jugando:
           </p>
         </div>
       </div>
 
-      {/* Rejilla de los 4 Minijuegos */}
+      {/* Rejilla de los 4 Minijuegos con Objetivos Claros */}
       <div className="rejilla-tarjetas-juegos">
         {listaMinijuegos.map((juego) => {
           const IconoComponente = juego.icono;
@@ -95,6 +103,13 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
                 <div className="insignia-formula-tema">{juego.tema}</div>
                 <h3 className="titulo-tarjeta-juego">{juego.titulo}</h3>
                 <span className="subtitulo-tarjeta-juego">{juego.subtitulo}</span>
+
+                {/* Caja de Objetivo y Utilidad */}
+                <div className="caja-objetivo-tarjeta">
+                  <p className="texto-objetivo-clave">{juego.objetivo}</p>
+                  <p className="texto-utilidad-clave">{juego.utilidad}</p>
+                </div>
+
                 <p className="descripcion-tarjeta-juego">{juego.descripcion}</p>
               </div>
 
@@ -112,4 +127,3 @@ export default function MenuJuegos({ alSeleccionarJuego }) {
     </div>
   );
 }
-

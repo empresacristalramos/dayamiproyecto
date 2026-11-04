@@ -1,19 +1,18 @@
 /**
- * Formulario de Autenticación Escolar (Registro e Inicio de Sesión)
- * Solicita: Nombre, Apellido, Nombre de Usuario (único) y Contraseña en texto plano.
+ * Formulario de Autenticación Escolar (Estilo Rojo Elegante & Femenino)
+ * Diseño con figuras geométricas flotantes, fondo de contraste y tonos favoritos de Dayami
+ * Adaptado a pantallas móviles de cualquier tamaño
  * Autora: Dayami Blanco Ramos - CETIS 57
- * Variables y funciones 100% en español.
  */
 
 import React, { useState } from 'react';
-import { User, KeyRound, Sparkles, AlertCircle, CheckCircle2, UserPlus, LogIn } from 'lucide-react';
+import { User, KeyRound, Sparkles, AlertCircle, Heart, UserPlus, LogIn } from 'lucide-react';
 import { registrarAlumno, iniciarSesionAlumno } from '../servicios/conexionSupabase';
 import { reproducirSonidoBoton, reproducirSonidoAcierto, reproducirSonidoFallo } from '../servicios/motorSonido';
 
 export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
   const [esModoRegistro, setEsModoRegistro] = useState(true);
 
-  // Estados del formulario en español
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [nombreUsuario, setNombreUsuario] = useState('');
@@ -51,7 +50,7 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
         const respuesta = await registrarAlumno(nombre, apellido, nombreUsuario, contrasena);
         if (respuesta.exito) {
           reproducirSonidoAcierto();
-          alAutenticarCorrectamente(respuesta.usuario, true); // Es nuevo usuario -> mostrar intro de Dayami
+          alAutenticarCorrectamente(respuesta.usuario, true);
         } else {
           reproducirSonidoFallo();
           setMensajeError(respuesta.mensaje || 'Error al registrar.');
@@ -68,6 +67,7 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
         }
       }
     } catch (error) {
+      console.error("Error en autenticación:", error);
       setMensajeError('Ocurrió un error inesperado. Intenta de nuevo.');
       reproducirSonidoFallo();
     } finally {
@@ -76,23 +76,41 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
   };
 
   return (
-    <div className="pantalla-autenticacion">
-      <div className="tarjeta-formulario-autenticacion">
-        {/* Encabezado con estética retro/neón */}
-        <div className="encabezado-formulario">
-          <div className="icono-grande-geomatrix">📐</div>
-          <h1 className="titulo-geomatrix">GeoMatrix</h1>
-          <p className="subtitulo-geomatrix">Batalla Analítica • CETIS 57</p>
-          <div className="etiqueta-creadora">
-            <Sparkles size={14} /> Creado por: <strong>Dayami Blanco Ramos</strong>
+    <div className="pantalla-autenticacion-roja">
+      {/* Figuras geométricas flotantes decorativas en el fondo */}
+      <div className="fondo-figuras-geometricas">
+        <span className="figura-flotante f-triangulo">▲</span>
+        <span className="figura-flotante f-circulo">●</span>
+        <span className="figura-flotante f-cuadrado">■</span>
+        <span className="figura-flotante f-rombo">◆</span>
+        <span className="figura-flotante f-parabola">∪</span>
+        <span className="figura-flotante f-estrella">✦</span>
+        <span className="figura-flotante f-abeja">🐝</span>
+      </div>
+
+      <div className="tarjeta-formulario-roja">
+        {/* Cabecera con bienvenida elegante y toques femeninos */}
+        <div className="encabezado-formulario-rojo">
+          <div className="insignia-corazon-creadora">
+            <Heart size={14} fill="#f43f5e" color="#f43f5e" />
+            <span>GeoMatrix • Edición Especial</span>
+            <Heart size={14} fill="#f43f5e" color="#f43f5e" />
+          </div>
+
+          <h1 className="titulo-geomatrix-rojo">GeoMatrix</h1>
+          <p className="subtitulo-institucion-rojo">CETIS No. 57 • Geometría Analítica</p>
+
+          <div className="etiqueta-creadora-roja">
+            <Sparkles size={14} className="icono-brillo" />
+            Creado por: <strong>Dayami Blanco Ramos</strong>
           </div>
         </div>
 
-        {/* Pestañas para alternar entre Registro e Inicio de Sesión */}
-        <div className="pestanas-autenticacion">
+        {/* Pestañas Registro / Login */}
+        <div className="pestanas-autenticacion-rojas">
           <button
             type="button"
-            className={`pestana-auth ${esModoRegistro ? 'activa' : ''}`}
+            className={`pestana-roja ${esModoRegistro ? 'activa' : ''}`}
             onClick={() => cambiarModo(true)}
           >
             <UserPlus size={16} />
@@ -100,7 +118,7 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
           </button>
           <button
             type="button"
-            className={`pestana-auth ${!esModoRegistro ? 'activa' : ''}`}
+            className={`pestana-roja ${!esModoRegistro ? 'activa' : ''}`}
             onClick={() => cambiarModo(false)}
           >
             <LogIn size={16} />
@@ -109,22 +127,22 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
         </div>
 
         {/* Formulario */}
-        <form onSubmit={manejarEnvio} className="cuerpo-formulario">
+        <form onSubmit={manejarEnvio} className="cuerpo-formulario-rojo">
           {mensajeError && (
-            <div className="alerta-error">
+            <div className="alerta-error-roja">
               <AlertCircle size={18} />
               <span>{mensajeError}</span>
             </div>
           )}
 
           {esModoRegistro && (
-            <div className="fila-campos-doble">
+            <div className="fila-campos-doble-roja">
               <div className="grupo-entrada">
-                <label className="etiqueta-campo">Nombre:</label>
+                <label className="etiqueta-campo-roja">Nombre:</label>
                 <input
                   type="text"
-                  className="entrada-texto"
-                  placeholder="Ej. Carlos"
+                  className="entrada-texto-roja"
+                  placeholder="Ej. Dayami"
                   value={nombre}
                   onChange={(e) => setNombre(e.target.value)}
                   required={esModoRegistro}
@@ -132,11 +150,11 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
               </div>
 
               <div className="grupo-entrada">
-                <label className="etiqueta-campo">Apellido:</label>
+                <label className="etiqueta-campo-roja">Apellido:</label>
                 <input
                   type="text"
-                  className="entrada-texto"
-                  placeholder="Ej. González"
+                  className="entrada-texto-roja"
+                  placeholder="Ej. Ramos"
                   value={apellido}
                   onChange={(e) => setApellido(e.target.value)}
                   required={esModoRegistro}
@@ -146,13 +164,13 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
           )}
 
           <div className="grupo-entrada">
-            <label className="etiqueta-campo">
-              <User size={15} /> Nombre de Usuario (Único):
+            <label className="etiqueta-campo-roja">
+              <User size={15} /> Nombre de Usuario:
             </label>
             <input
               type="text"
-              className="entrada-texto"
-              placeholder="Ej. carlitos_cetis57"
+              className="entrada-texto-roja"
+              placeholder="Ej. dayami_cetis57"
               value={nombreUsuario}
               onChange={(e) => setNombreUsuario(e.target.value)}
               required
@@ -160,32 +178,31 @@ export default function FormularioAutenticacion({ alAutenticarCorrectamente }) {
           </div>
 
           <div className="grupo-entrada">
-            <label className="etiqueta-campo">
+            <label className="etiqueta-campo-roja">
               <KeyRound size={15} /> Contraseña:
             </label>
             <input
               type="text"
-              className="entrada-texto"
-              placeholder="Contraseña sencilla"
+              className="entrada-texto-roja"
+              placeholder="Escribe una contraseña sencilla"
               value={contrasena}
               onChange={(e) => setContrasena(e.target.value)}
               required
             />
-            <span className="pista-campo">
-              * Identificación escolar simple para que no olvides tu cuenta.
+            <span className="pista-campo-roja">
+              * Identificación escolar simple para que nunca la olvides.
             </span>
           </div>
 
           <button
             type="submit"
-            className="boton-enviar-formulario"
+            className="boton-enviar-formulario-rojo"
             disabled={cargando}
           >
-            {cargando ? 'Cargando...' : esModoRegistro ? 'Registrarme y Jugar' : 'Entrar a Mi Cuenta'}
+            {cargando ? 'Conectando con Supabase...' : esModoRegistro ? '¡Comenzar la Aventura!' : 'Entrar a Jugar'}
           </button>
         </form>
       </div>
     </div>
   );
 }
-

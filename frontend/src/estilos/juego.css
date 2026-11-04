@@ -1324,3 +1324,380 @@ body {
   color: #38bdf8;
   font-style: italic;
 }
+
+
+/* ====================================================================
+   ESTILOS DEL LOGIN ROJO ELEGANTE Y FEMENINO (DAYAMI)
+   ==================================================================== */
+.pantalla-autenticacion-roja {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: radial-gradient(circle at top center, #4c0519 0%, #1c0a10 50%, #090305 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.fondo-figuras-geometricas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.figura-flotante {
+  position: absolute;
+  color: rgba(244, 63, 94, 0.15);
+  font-weight: bold;
+  animation: flotarGeometrico 12s infinite ease-in-out alternate;
+}
+
+.f-triangulo { top: 10%; left: 8%; font-size: 3rem; animation-delay: 0s; }
+.f-circulo { top: 75%; left: 12%; font-size: 2.5rem; animation-delay: 2s; }
+.f-cuadrado { top: 20%; right: 10%; font-size: 3.5rem; animation-delay: 4s; }
+.f-rombo { top: 70%; right: 8%; font-size: 2.8rem; animation-delay: 1s; }
+.f-parabola { bottom: 15%; left: 45%; font-size: 3rem; animation-delay: 3s; }
+.f-estrella { top: 8%; right: 40%; font-size: 2rem; color: rgba(251, 113, 133, 0.25); }
+.f-abeja { top: 45%; left: 5%; font-size: 2rem; animation-delay: 5s; }
+
+@keyframes flotarGeometrico {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(15deg); }
+  100% { transform: translateY(15px) rotate(-15deg); }
+}
+
+.tarjeta-formulario-roja {
+  background: rgba(23, 7, 12, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(244, 63, 94, 0.35);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(225, 29, 72, 0.2);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  padding: 1.8rem;
+  position: relative;
+  z-index: 10;
+  animation: modalAparecer 0.4s ease-out;
+}
+
+.encabezado-formulario-rojo {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.insignia-corazon-creadora {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(244, 63, 94, 0.15);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  color: #fda4af;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.titulo-geomatrix-rojo {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #f43f5e, #fb7185, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.subtitulo-institucion-rojo {
+  color: #fecdd3;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.etiqueta-creadora-roja {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ffe4e6;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+.icono-brillo {
+  color: #facc15;
+}
+
+.pestanas-autenticacion-rojas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: rgba(43, 14, 23, 0.6);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  border-radius: 12px;
+  padding: 0.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.pestana-roja {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem;
+  background: transparent;
+  border: none;
+  color: #fda4af;
+  font-weight: 700;
+  font-size: 0.88rem;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pestana-roja.activa {
+  background: linear-gradient(135deg, #e11d48, #be123c);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+}
+
+.cuerpo-formulario-rojo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.alerta-error-roja {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(225, 29, 72, 0.2);
+  border: 1px solid #f43f5e;
+  color: #ffe4e6;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.84rem;
+}
+
+.fila-campos-doble-roja {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.etiqueta-campo-roja {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fecdd3;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.entrada-texto-roja {
+  background: rgba(30, 9, 16, 0.8);
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  color: #fff;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  transition: all 0.2s;
+}
+
+.entrada-texto-roja:focus {
+  outline: none;
+  border-color: #f43f5e;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.4);
+  background: rgba(43, 14, 23, 0.9);
+}
+
+.pista-campo-roja {
+  font-size: 0.72rem;
+  color: #fda4af;
+}
+
+.boton-enviar-formulario-rojo {
+  margin-top: 0.4rem;
+  background: linear-gradient(135deg, #e11d48, #9f1239);
+  border: none;
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(225, 29, 72, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-enviar-formulario-rojo:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(225, 29, 72, 0.6);
+}
+
+/* ====================================================================
+   NOTIFICACIONES ESPÍA (PERSONAJE ASOMÁNDOSE)
+   ==================================================================== */
+.contenedor-notificacion-espia {
+  position: fixed;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+/* Modo 1: Asomado en la esquina inferior derecha */
+.contenedor-notificacion-espia.modo-asomado {
+  bottom: 20px;
+  right: 20px;
+  animation: deslizarDesdeDerecha 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Modo 2: Cruzando sutilmente abajo */
+.contenedor-notificacion-espia.modo-cruzando {
+  bottom: 20px;
+  left: 20px;
+  animation: deslizarDesdeIzquierda 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Modo 3: Asomándose arriba a la derecha */
+.contenedor-notificacion-espia.modo-arriba {
+  top: 75px;
+  right: 20px;
+  animation: deslizarDesdeArriba 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes deslizarDesdeDerecha {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes deslizarDesdeIzquierda {
+  from { transform: translateX(-120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes deslizarDesdeArriba {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.burbuja-espia {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid;
+  border-radius: 16px;
+  padding: 0.8rem 1rem;
+  max-width: 320px;
+  position: relative;
+}
+
+.boton-cerrar-espia {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.fila-contenido-espia {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-espia-circulo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.simbolo-espia {
+  font-size: 1.4rem;
+}
+
+.texto-espia-bloque {
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre-espia {
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.frase-espia {
+  font-size: 0.82rem;
+  color: #f1f5f9;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+/* ====================================================================
+   OPTIMIZACIÓN 100% RESPONSIVA PARA CUALQUIER CELULAR
+   ==================================================================== */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  .contenedor-barra {
+    padding: 0.4rem 0.2rem;
+  }
+
+  .titulo-marca {
+    font-size: 1.15rem;
+  }
+
+  .subtitulo-autora {
+    font-size: 0.65rem;
+  }
+
+  .tarjeta-formulario-roja {
+    padding: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .fila-campos-doble-roja {
+    grid-template-columns: 1fr;
+  }
+
+  .lienzo-cartesiano {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .panel-control-pendiente, .panel-botones-amenazas, .panel-opciones-vias {
+    width: 100%;
+  }
+
+  .panel-botones-amenazas {
+    grid-template-columns: 1fr;
+  }
+
+  .rejilla-botones-vias {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .marcador-formula-neon {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .burbuja-espia {
+    max-width: 280px;
+    padding: 0.65rem 0.8rem;
+  }
+
+  .frase-espia {
+    font-size: 0.78rem;
+  }
+}

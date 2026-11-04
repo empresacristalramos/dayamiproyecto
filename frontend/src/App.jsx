@@ -1,7 +1,7 @@
 /**
  * Componente Principal de GeoMatrix
  * Autora: Dayami Blanco Ramos - CETIS 57
- * Variables y funciones 100% en español.
+ * Con Capturador de Errores y Notificaciones Espía sorpresa
  */
 
 import React, { useState, useEffect } from 'react';
@@ -14,6 +14,8 @@ import ModalBienvenidaDayami from './componentes/ModalBienvenidaDayami';
 import MenuJuegos from './componentes/MenuJuegos';
 import SelectorPersonajes from './componentes/SelectorPersonajes';
 import TablaClasificacion from './componentes/TablaClasificacion';
+import NotificadorEspia from './componentes/NotificadorEspia';
+import CapturadorErrores from './componentes/CapturadorErrores';
 
 // Los 4 Minijuegos de Geometría Analítica
 import JuegoCazaAbeja from './componentes/juegos/JuegoCazaAbeja';
@@ -34,14 +36,17 @@ export default function App() {
   const [vistaActual, setVistaActual] = useState('menu_juegos');
   const [mostrarIntroDayami, setMostrarIntroDayami] = useState(false);
 
-  // Cargar sesión persistente al abrir la página
   useEffect(() => {
-    const usuarioGuardado = obtenerSesionLocal();
-    if (usuarioGuardado) {
-      setUsuarioActual(usuarioGuardado);
-      if (!usuarioGuardado.has_seen_intro) {
-        setMostrarIntroDayami(true);
+    try {
+      const usuarioGuardado = obtenerSesionLocal();
+      if (usuarioGuardado) {
+        setUsuarioActual(usuarioGuardado);
+        if (!usuarioGuardado.has_seen_intro) {
+          setMostrarIntroDayami(true);
+        }
       }
+    } catch (e) {
+      console.warn("Error cargando sesión:", e);
     }
   }, []);
 
@@ -79,78 +84,83 @@ export default function App() {
     ));
   };
 
-  // 1. Si no hay usuario activo, mostrar pantalla de registro / inicio de sesión
+  // 1. Pantalla de inicio de sesión / registro con temática roja geométrica
   if (!usuarioActual) {
-    return <FormularioAutenticacion alAutenticarCorrectamente={manejarAutenticacion} />;
+    return (
+      <CapturadorErrores>
+        <FormularioAutenticacion alAutenticarCorrectamente={manejarAutenticacion} />
+      </CapturadorErrores>
+    );
   }
 
   // 2. Pantalla principal del videojuego
   return (
-    <div className="aplicacion-geomatrix">
-      {/* Barra superior de navegación */}
-      <BarraNavegacion
-        usuarioActual={usuarioActual}
-        vistaActual={vistaActual}
-        alCambiarVista={setVistaActual}
-        alCerrarSesion={manejarCerrarSesion}
-      />
+    <CapturadorErrores>
+      <div className="aplicacion-geomatrix">
+        {/* Barra superior de navegación adaptada a móvil */}
+        <BarraNavegacion
+          usuarioActual={usuarioActual}
+          vistaActual={vistaActual}
+          alCambiarVista={setVistaActual}
+          alCerrarSesion={manejarCerrarSesion}
+        />
 
-      {/* Contenido dinámico según la vista seleccionada */}
-      <main className="area-principal-contenido">
-        {vistaActual === 'menu_juegos' && (
-          <MenuJuegos alSeleccionarJuego={(idJuego) => setVistaActual(idJuego)} />
+        {/* Notificaciones sorpresa de personajes asomándose cada 2 minutos */}
+        <NotificadorEspia avatarUsuarioId={usuarioActual.avatar_id || 1} />
+
+        {/* Contenido dinámico */}
+        <main className="area-principal-contenido">
+          {vistaActual === 'menu_juegos' && (
+            <MenuJuegos alSeleccionarJuego={(idJuego) => setVistaActual(idJuego)} />
+          )}
+
+          {vistaActual === 'personajes' && (
+            <SelectorPersonajes
+              usuarioActual={usuarioActual}
+              alActualizarAvatar={manejarActualizarAvatar}
+            />
+          )}
+
+          {vistaActual === 'clasificacion' && <TablaClasificacion />}
+
+          {vistaActual === 'caza_abeja' && (
+            <JuegoCazaAbeja
+              usuarioActual={usuarioActual}
+              alVolverAlMenu={() => setVistaActual('menu_juegos')}
+              alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
+            />
+          )}
+
+          {vistaActual === 'punto_medio' && (
+            <JuegoPuntoMedio
+              usuarioActual={usuarioActual}
+              alVolverAlMenu={() => setVistaActual('menu_juegos')}
+              alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
+            />
+          )}
+
+          {vistaActual === 'radar' && (
+            <JuegoRadarDistancia
+              usuarioActual={usuarioActual}
+              alVolverAlMenu={() => setVistaActual('menu_juegos')}
+              alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
+            />
+          )}
+
+          {vistaActual === 'vias' && (
+            <JuegoViasParalelas
+              usuarioActual={usuarioActual}
+              alVolverAlMenu={() => setVistaActual('menu_juegos')}
+              alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
+            />
+          )}
+        </main>
+
+        {/* Modal de Bienvenida e Introducción presentado por el avatar de Dayami */}
+        {mostrarIntroDayami && (
+          <ModalBienvenidaDayami alCerrarIntro={manejarCerrarIntro} />
         )}
-
-        {vistaActual === 'personajes' && (
-          <SelectorPersonajes
-            usuarioActual={usuarioActual}
-            alActualizarAvatar={manejarActualizarAvatar}
-          />
-        )}
-
-        {vistaActual === 'clasificacion' && <TablaClasificacion />}
-
-        {/* Minijuego 1: Caza la Abeja (Pendiente) */}
-        {vistaActual === 'caza_abeja' && (
-          <JuegoCazaAbeja
-            usuarioActual={usuarioActual}
-            alVolverAlMenu={() => setVistaActual('menu_juegos')}
-            alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
-          />
-        )}
-
-        {/* Minijuego 2: Rescate en el Punto Medio */}
-        {vistaActual === 'punto_medio' && (
-          <JuegoPuntoMedio
-            usuarioActual={usuarioActual}
-            alVolverAlMenu={() => setVistaActual('menu_juegos')}
-            alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
-          />
-        )}
-
-        {/* Minijuego 3: Radar de Distancia Cósmica */}
-        {vistaActual === 'radar' && (
-          <JuegoRadarDistancia
-            usuarioActual={usuarioActual}
-            alVolverAlMenu={() => setVistaActual('menu_juegos')}
-            alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
-          />
-        )}
-
-        {/* Minijuego 4: Vías Paralelas vs Perpendiculares */}
-        {vistaActual === 'vias' && (
-          <JuegoViasParalelas
-            usuarioActual={usuarioActual}
-            alVolverAlMenu={() => setVistaActual('menu_juegos')}
-            alActualizarPuntajeGlobal={manejarActualizarPuntajeGlobal}
-          />
-        )}
-      </main>
-
-      {/* Modal de Bienvenida e Introducción presentado por el avatar de Dayami */}
-      {mostrarIntroDayami && (
-        <ModalBienvenidaDayami alCerrarIntro={manejarCerrarIntro} />
-      )}
-    </div>
+      </div>
+    </CapturadorErrores>
   );
 }

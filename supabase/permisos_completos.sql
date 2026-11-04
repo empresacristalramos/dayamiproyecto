@@ -39,3 +39,4 @@ CREATE POLICY "permitir_todo_usuarios" ON public.usuarios FOR ALL TO public USIN
 
 DROP POLICY IF EXISTS "permitir_todo_puntajes" ON public.puntajes_minijuegos;
 CREATE POLICY "permitir_todo_puntajes" ON public.puntajes_minijuegos FOR ALL TO public USING (true) WITH CHECK (true);
+

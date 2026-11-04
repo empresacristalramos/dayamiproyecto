@@ -326,3 +326,4 @@ export const FRASES_POR_PERSONAJE = {
     "¡Bzzzz... Misión cumplida, hasta la próxima partida!"
   ]
 };
+

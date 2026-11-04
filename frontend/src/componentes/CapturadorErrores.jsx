@@ -67,3 +67,4 @@ export default class CapturadorErrores extends React.Component {
     return this.props.children;
   }
 }
+

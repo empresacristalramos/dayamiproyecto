@@ -1701,3 +1701,63 @@ body {
     font-size: 0.78rem;
   }
 }
+
+
+/* Estilos de la Guía y Colores Suaves Pizarra */
+.panel-explicacion-datos {
+  background: rgba(30, 27, 46, 0.95);
+  border: 1.5px solid #a855f7;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.titulo-guia {
+  font-size: 0.95rem;
+  color: #e9d5ff;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.lista-guia-datos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+.boton-ayuda-guia {
+  background: rgba(168, 85, 247, 0.2);
+  border: 1px solid #a855f7;
+  color: #e9d5ff;
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.boton-ayuda-guia:hover {
+  background: rgba(168, 85, 247, 0.35);
+}
+
+.fila-etiqueta-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.valor-m-destacado {
+  color: #facc15;
+  font-size: 1rem;
+  font-family: monospace;
+}

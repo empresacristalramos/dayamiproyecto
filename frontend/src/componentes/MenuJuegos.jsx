@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Play, Sparkles, Target, Zap, Radar, TrainTrack } from 'lucide-react';
+import { Play, Sparkles, Target, Zap, Radar, GitCommit } from 'lucide-react';
 import { reproducirSonidoBoton } from '../servicios/motorSonido';
 
 export default function MenuJuegos({ alSeleccionarJuego }) {
